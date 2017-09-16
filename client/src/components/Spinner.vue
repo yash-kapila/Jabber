@@ -35,6 +35,9 @@ export default {
 </script>
 
 <style scoped>
+/*
+** spinner.gif downloaded from https://loading.io/.
+*/
 .spinner-icon {
     background: url('../assets/spinner.gif') center center no-repeat;
     height: 100%;

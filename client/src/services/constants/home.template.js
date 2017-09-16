@@ -1,3 +1,7 @@
 export default {
-    heading: 'Jabber'
+    heading: 'Jabber',
+    register: {
+        label: 'Not registered yet?',
+        link: 'Register Now'
+    }
 }

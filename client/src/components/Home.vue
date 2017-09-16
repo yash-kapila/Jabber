@@ -14,6 +14,14 @@
       <div class="login-container">
         <login></login>
       </div>
+      <div class="register-message-container">
+        <label class="label-message">
+          {{ template.register.label }}
+        </label>
+        <router-link to="/register" class="redirect-link">
+          {{ template.register.link }}
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +56,15 @@ export default {
 .app-logo {
   width: 95px;
   border-radius: 20px
+}
+
+.register-message-container {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.redirect-link, .redirect-link:hover {
+  color: #A12E2E;
 }
 
 /*
