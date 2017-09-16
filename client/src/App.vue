@@ -1,12 +1,18 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <spinner></spinner>    
   </div>
 </template>
 
 <script>
+import spinner from './components/Spinner';
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    spinner
+  }
 }
 </script>
 
