@@ -1,0 +1,22 @@
+{
+  "name": "jabber-server",
+  "version": "1.0.0",
+  "description": "Jabber backend project using NodeJs/Express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "babel-watch app.js"
+  },
+  "author": "Yash Kapila",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-watch": "^2.0.7",
+    "eslint": "^4.7.0",
+    "nodemon": "^1.12.1"
+  }
+}
