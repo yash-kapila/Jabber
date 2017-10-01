@@ -2,29 +2,42 @@
   <div class="login-container">
     <div class="login-form">
       <form name="loginForm" novalidate @submit.prevent="login()">
-        <div class="form-group username-container">
-          <label> {{ template.label.username }} </label>
+        <div class="form-group username-container" :class="{'has-error': $v.username.$error}">
+          <label> 
+            {{ template.label.username }} 
+          </label>
           <input
             type="text"
             name="username"
             v-model="username"
             class="form-control"
-            :placeholder="template.placeholder.username"
-            required>
+            @input="$v.username.$touch()"
+            @blur="$v.username.$touch()"
+            :placeholder="template.placeholder.username">
+            <span class="validation-message" v-if="$v.username.$error">
+              {{ template.error.username }}
+            </span>
         </div>
-        <div class="form-group password-container">
-          <label> {{ template.label.password }} </label>
+        <div class="form-group password-container" :class="{'has-error': $v.password.$error}">
+          <label> 
+            {{ template.label.password }} 
+          </label>
           <input
             type="password"
             name="password"
             v-model="password"
             class="form-control"
-            :placeholder="template.placeholder.password"
-            required>
+            @input="$v.password.$touch()"
+            @blur="$v.password.$touch()"
+            :placeholder="template.placeholder.password">
+            <span class="validation-message" v-if="$v.password.$error">
+              {{ template.error.password }}
+            </span>
         </div>
         <div class="submit-btn-container">
           <button
             type="submit"
+            :disabled="$v.username.$invalid || $v.password.$invalid"
             class="btn btn-primary submit-btn">
             {{ template.submit }}
           </button>
@@ -35,6 +48,8 @@
 </template>
 
 <script>
+import { required } from 'vuelidate/lib/validators'
+
 import template from '../services/constants/login.template';
 import PreLoginDataService from '../services/data/pre-login';
 import SpinnerService from '../services/helpers/spinner';
@@ -64,6 +79,14 @@ export default {
         SpinnerService.hideSpinner();        
       });
     },
+  },
+  validations: {
+    username: {
+      required
+    },
+    password: {
+      required
+    }
   }
 }
 </script>
@@ -91,5 +114,9 @@ form .submit-btn-container .submit-btn {
   border-radius: 0;
   width: 100%;
   padding: 15px 0;
+}
+
+form .has-error label, form .has-error .validation-message {
+  color: #a94442;
 }
 </style>

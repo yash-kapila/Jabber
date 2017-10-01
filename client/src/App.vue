@@ -6,7 +6,12 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import Vuelidate from 'vuelidate'
+
 import spinner from './components/Spinner';
+
+Vue.use(Vuelidate);
 
 export default {
   name: 'app',
