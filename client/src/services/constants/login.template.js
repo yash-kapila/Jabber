@@ -7,5 +7,9 @@ export default {
         username: 'Username',
         password: 'Password',
     },
+    error: {
+        username: 'Username is required',
+        password: 'Password is required',
+    },
     submit: 'Submit',
 }
