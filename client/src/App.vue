@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <spinner></spinner>    
+    <spinner></spinner>
   </div>
 </template>
 
@@ -34,7 +34,7 @@ body {
   margin-top: 60px;
 }
 
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:active:hover, .btn-primary:active:focus {
+.btn-primary, .btn-primary:hover, .btn-primary[disabled]:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:active:hover, .btn-primary:active:focus {
   background-color: #36C617;
   border-color: #36C617;
 }

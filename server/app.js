@@ -7,11 +7,19 @@ import preLoginRouter from './routes/pre-login/index';
 
 const app = express();
 
+/*
+** Mongoose: mpromise (mongoose's default promise library) is deprecated,
+** plug in your own promise library instead: http://mongoosejs.com/docs/promises.html
+*/
+mongoose.Promise = global.Promise;
+
 mongoose.connect(dev.dbURL, {
     useMongoClient: true
 });
 
-// If the Node process ends, close the Mongoose connection 
+/*
+** If the Node process ends, close the Mongoose connection
+*/
 process.on('SIGINT', () => {  
     mongoose.connection.close(function () { 
         console.log('Mongoose connection disconnected through app termination'); 
