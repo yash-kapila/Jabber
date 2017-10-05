@@ -1,5 +1,6 @@
 import express from 'express';
 
+import config from '../../config/dev';
 import LoginModel from '../../models/login';
 import UserModel from '../../models/user';
 import constants from '../../services/constants';
@@ -13,7 +14,7 @@ const router = express.Router();
 */
 router.post('/', (req, res) => {
     const username = req.body.username;
-    const password = LoginService.hashPassword(req.body.password, constants.bcrypt.saltRounds);
+    const password = LoginService.hashPassword(req.body.password, config.bcrypt.saltRounds);
     const email = req.body.email;
 
     const login = new LoginModel({
@@ -39,10 +40,20 @@ router.post('/', (req, res) => {
 
                     // Save email and _ID from 'Credentials' in User collection
                     user.saveRecord()
-                        .then(record => res.status(200).json({
-                            code: constants.codes.record_created,
-                            username: login.username
-                        }))
+                        .then((record) => {
+                            const payload = { username: login.username };
+                            const options = { expiresIn: config.jwt.expiresIn };
+
+                            const token = LoginService.signJWT(payload, config.jwt.key, options);
+
+                            // set jwt in the response cookie
+                            res.cookie('jabber', token, { httpOnly: true });
+
+                            return res.status(200).json({
+                                code: constants.codes.record_created,
+                                username: login.username
+                            })
+                        })
                         .catch(err => LoginService.serverError(res, constants.codes.server_error));
                 })
                 .catch(err => LoginService.serverError(res, constants.codes.server_error));

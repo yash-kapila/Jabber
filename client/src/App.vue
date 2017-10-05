@@ -9,7 +9,7 @@
 import Vue from 'vue'
 import Vuelidate from 'vuelidate'
 
-import spinner from './components/Spinner';
+import spinner from './components/common/Spinner';
 
 Vue.use(Vuelidate);
 

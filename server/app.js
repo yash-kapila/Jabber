@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 
 import dev from './config/dev';
@@ -31,6 +32,11 @@ process.on('SIGINT', () => {
 ** Set process.env.PORT through command line to override default 3000 port value
 */
 const port = process.env.PORT || 3000;
+
+/*
+** Middleware to parse Cookie header and populate req.cookies with an object keyed by the cookie names.
+*/
+app.use(cookieParser());
 
 /*
 ** Middlewares .json() and .urlencoded() exposed by bodyParser

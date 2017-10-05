@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import SpinnerService from '../services/helpers/spinner';
+import SpinnerService from '../../services/helpers/spinner';
 
 export default {
   name: 'spinner',
@@ -39,7 +39,7 @@ export default {
 ** spinner.gif downloaded from https://loading.io/.
 */
 .spinner-icon {
-    background: url('../assets/spinner.gif') center center no-repeat;
+    background: url('../../assets/spinner.gif') center center no-repeat;
     height: 100%;
     z-index: 20;
 }

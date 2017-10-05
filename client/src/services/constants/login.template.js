@@ -12,4 +12,8 @@ export default {
         password: 'Password is required',
     },
     submit: 'Submit',
+    register: {
+        label: 'Not registered yet?',
+        link: 'Register Now'
+    }
 }

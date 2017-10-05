@@ -5,9 +5,8 @@ export default {
         record_created: "Congratulations. You are registered. Please sign in to Jabber.",
         incorrect_credentials: "This password doesn't match with our records. Please try again.",
         username_not_found: "Username not found. Is that the correct one?",
-        successful_login: "Successful login"
+        successful_login: "Successful login",
+        expired_session: "Session expired. Please sign in again.",
+        session_valid: "Valid session."
     },
-    bcrypt: {
-        saltRounds: 10,
-    }
 }
