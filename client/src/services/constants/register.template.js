@@ -16,4 +16,8 @@ export default {
     password: 'Password is required',
   },
   submit: 'Submit',
+  login: {
+    label: 'Already have a username?',
+    link: 'Click here to login'
+  }
 }
