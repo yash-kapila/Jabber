@@ -64,7 +64,9 @@ import errorBanner from '../common/ErrorBanner';
 import template from '../../services/constants/login.template';
 import PreLoginDataService from '../../services/data/pre-login';
 import SpinnerService from '../../services/helpers/spinner';
+import CommonDataService from '../../services/data/common';
 
+const commonDataService = new CommonDataService();
 const data = new PreLoginDataService();
 
 export default {
@@ -84,14 +86,14 @@ export default {
       SpinnerService.showSpinner();
       data.login(this.username, this.password)
       .then((data) => {
-        // Success login
-        console.log(data);
+        // If successful login, set validity of token true.
+        commonDataService.setTokenValidity(true);
+        SpinnerService.hideSpinner();
+        this.$router.push('/dashboard');
       })
       .catch((error) => {
         // Error while logging in
         this.errorMessage = error.data.code;
-      })
-      .finally(() => {
         SpinnerService.hideSpinner();
       });
     },

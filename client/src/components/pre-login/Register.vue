@@ -83,7 +83,9 @@
   import template from '../../services/constants/register.template';
   import PreLoginDataService from '../../services/data/pre-login';
   import SpinnerService from '../../services/helpers/spinner';
+  import CommonDataService from '../../services/data/common';
 
+  const commonDataService = new CommonDataService();
   const data = new PreLoginDataService();
 
   export default {
@@ -117,13 +119,14 @@
         SpinnerService.showSpinner();
         data.register(this.username, this.password, this.email)
           .then((data) => {
-            // Success register
+            // If successful registration, log user in & set validity of token true.
+            commonDataService.setTokenValidity(true);
+            SpinnerService.hideSpinner();
+            this.$router.push('/dashboard');
           })
           .catch((error) => {
             // Error while registering
             this.errorMessage = error.data.code;
-          })
-          .finally(() => {
             SpinnerService.hideSpinner();
           });
       },
