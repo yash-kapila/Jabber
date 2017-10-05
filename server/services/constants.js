@@ -7,7 +7,4 @@ export default {
         username_not_found: "Username not found. Is that the correct one?",
         successful_login: "Successful login"
     },
-    bcrypt: {
-        saltRounds: 10,
-    }
 }

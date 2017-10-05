@@ -1,5 +1,6 @@
 import express from 'express';
 
+import config from '../../config/dev';
 import LoginModel from '../../models/login';
 import constants from '../../services/constants';
 import LoginService from '../../services/login';
@@ -27,7 +28,17 @@ router.post('/', (req, res) => {
             // check if incoming password matches hashed password stored in collection
             const passwordMatch = LoginService.matchPassword(password, record.password);
 
-            if(passwordMatch) return res.status(200).json({ code: constants.codes.successful_login });
+            if(passwordMatch){
+                const payload = { username: record.username };
+                const options = { expiresIn: config.jwt.expiresIn };
+
+                const token = LoginService.signJWT(payload, config.jwt.key, options);
+
+                // set jwt in the response cookie
+                res.cookie('jabber', token, { httpOnly: true });
+
+                return res.status(200).json({ code: constants.codes.successful_login });
+            }
 
             return res.status(401).json({ code: constants.codes.incorrect_credentials });
         })

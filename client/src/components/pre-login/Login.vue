@@ -85,6 +85,7 @@ export default {
       data.login(this.username, this.password)
       .then((data) => {
         // Success login
+        console.log(data);
       })
       .catch((error) => {
         // Error while logging in

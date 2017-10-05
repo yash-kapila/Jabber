@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 export default class LoginService {
     static hashPassword(plainTextPassword, saltRounds) {
@@ -11,5 +12,9 @@ export default class LoginService {
 
     static serverError(res, code) {
         return res.status(500).json({ code });
+    };
+
+    static signJWT(payload, key, options) {
+        return jwt.sign(payload, key, options);
     };
 }
