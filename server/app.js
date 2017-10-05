@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 
-import dev from './config/dev';
+import config from './config/dev';
 import preLoginRouter from './routes/pre-login/index';
 
 const app = express();
@@ -14,7 +14,7 @@ const app = express();
 */
 mongoose.Promise = global.Promise;
 
-mongoose.connect(dev.dbURL, {
+mongoose.connect(config.dbURL, {
     useMongoClient: true
 });
 
