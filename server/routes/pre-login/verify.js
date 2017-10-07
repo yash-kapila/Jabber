@@ -2,7 +2,7 @@ import express from 'express';
 
 import config from '../../config/dev';
 import constants from '../../services/constants';
-import CommonService from '../../services/common';
+import LoginService from '../../services/login';
 
 const router = express.Router();
 
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     const token = req.cookies.jabber;
     // invalid token - synchronous
     try {
-        const status = CommonService.verifyJWT(token, config.jwt.key);
+        const status = LoginService.verifyJWT(token, config.jwt.key);
         // If token valid, return status: true
         return res.status(200).json({
             status: true,

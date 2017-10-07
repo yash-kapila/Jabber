@@ -1,8 +1,8 @@
 import express from 'express';
 
 import config from '../../config/dev';
-import LoginModel from '../../models/login';
-import UserModel from '../../models/user';
+import LoginModel from '../../models/pre-login/login';
+import UserModel from '../../models/pre-login/user';
 import constants from '../../services/constants';
 import LoginService from '../../services/login';
 
