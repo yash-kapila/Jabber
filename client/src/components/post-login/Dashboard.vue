@@ -17,8 +17,24 @@
 <script>
   import titleBar from './TitleBar';
 
+  import PostLoginDataService from '../../services/data/post-login';
+
+  const data = new PostLoginDataService();
+
   export default {
     name: 'dashboard',
+    // user prop populated from route
+    props: ['user'],
+    created: function() {
+        console.log(this.user);
+        data.getUserProfile(this.user.username)
+            .then(() => {
+                // success fetch of user profile details
+            })
+            .catch(() => {
+                // error fetching user profile details
+            });
+    },
     components: {
       titleBar
     }

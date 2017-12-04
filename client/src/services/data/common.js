@@ -3,7 +3,16 @@ import axios from 'axios';
 export default class CommonDataService {
   constructor() {
     this.tokenValidity = false;
+    this.loggedUserDetails = {};
   }
+
+  getLoggedInUserDetails() {
+      return this.loggedUserDetails;
+  };
+
+  setLoggedInUserDetails(user) {
+      Object.assign(this.loggedUserDetails, user);
+  };
 
   getTokenValidity() {
     return this.tokenValidity;

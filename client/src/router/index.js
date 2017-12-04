@@ -10,8 +10,19 @@ const commonDataService = new CommonDataService();
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
+      beforeEnter: (to, from, next) => {
+        // If token is valid, continue, else redirect to Home
+        if(commonDataService.getTokenValidity()) return next();
+        return next('/');
+      },
+      props: {
+          user: commonDataService.getLoggedInUserDetails()
+      }
+  }, {
       path: '/',
       name: 'Home',
       component: Home,
@@ -20,6 +31,9 @@ export default new Router({
           .then((data) => {
             // Token is valid
             commonDataService.setTokenValidity(data.status);
+            commonDataService.setLoggedInUserDetails({
+                username: data.username
+            });
             return next('/dashboard');
           })
           .catch((err) => {
@@ -28,16 +42,5 @@ export default new Router({
             return next();
           });
       }
-    },
-    {
-      path: '/dashboard',
-      name: 'Dashboard',
-      component: Dashboard,
-      beforeEnter: (to, from, next) => {
-        // If token is valid, continue, else redirect to Home
-        if(commonDataService.getTokenValidity()) return next();
-        return next('/');
-      }
-    }
-  ]
+  }]
 })

@@ -2,10 +2,15 @@ import mongoose from 'mongoose';
 
 let Schema = mongoose.Schema;
 
-let userSchema = new Schema({
-    username: {
-        type: String
-    }
+let chatSchema = new Schema({
+  participants: [{
+    type: String
+  }],
+  messages: [{
+    sender: String,
+    text: String,
+    date: Date
+  }]
 });
 
 // credentialSchema.methods.findExistingRecord = function() {
@@ -21,4 +26,4 @@ let userSchema = new Schema({
 //     });
 // };
 
-export default mongoose.model('User', userSchema);
+export default mongoose.model('Chat', chatSchema);

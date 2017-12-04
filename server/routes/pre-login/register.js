@@ -2,7 +2,7 @@ import express from 'express';
 
 import config from '../../config/dev';
 import LoginModel from '../../models/pre-login/login';
-import RegisterModel from '../../models/pre-login/register';
+import RegisterModel from '../../models/pre-login/user';
 import constants from '../../services/constants';
 import LoginService from '../../services/login';
 
@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
                     });
 
                     // Save email and _ID from 'Credentials' in User collection
-                    user.saveRecord()
+                    user.createUserRecord()
                         .then((record) => {
                             const payload = { username: login.username };
                             const options = { expiresIn: config.jwt.expiresIn };
