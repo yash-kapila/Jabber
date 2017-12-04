@@ -41,6 +41,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .home-page-container {
+    margin-top: 60px;
+  }
+
   .panel-container {
     margin:0 20%;
   }

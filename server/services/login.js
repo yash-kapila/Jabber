@@ -17,4 +17,8 @@ export default class LoginService {
     static signJWT(payload, key, options) {
         return jwt.sign(payload, key, options);
     };
+
+    static verifyJWT(token, key) {
+        return jwt.verify(token, key);
+    };
 }

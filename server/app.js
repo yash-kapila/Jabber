@@ -3,8 +3,9 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 
-import dev from './config/dev';
+import config from './config/dev';
 import preLoginRouter from './routes/pre-login/index';
+import postLoginRouter from './routes/post-login/index';
 
 const app = express();
 
@@ -14,19 +15,19 @@ const app = express();
 */
 mongoose.Promise = global.Promise;
 
-mongoose.connect(dev.dbURL, {
+mongoose.connect(config.dbURL, {
     useMongoClient: true
 });
 
 /*
 ** If the Node process ends, close the Mongoose connection
 */
-process.on('SIGINT', () => {  
-    mongoose.connection.close(function () { 
-        console.log('Mongoose connection disconnected through app termination'); 
-        process.exit(0); 
-    }); 
-}); 
+process.on('SIGINT', () => {
+    mongoose.connection.close(function () {
+        console.log('Mongoose connection disconnected through app termination');
+        process.exit(0);
+    });
+});
 
 /*
 ** Set process.env.PORT through command line to override default 3000 port value
@@ -48,13 +49,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /*
 ** Redirect request to post-login if request has 'user' in URL
 */
-// app.use('/user', postLoginRouter);
+app.use('/user', postLoginRouter);
 
 /*
 ** Redirect request to pre-login if request has no 'user' in URL
 */
 app.use('/', preLoginRouter);
 
+/*
+** Server listens at port 'port'
+*/
 app.listen(port, () => {
     console.log(`Listening to port ${port}`);
 });

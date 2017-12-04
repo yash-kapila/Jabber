@@ -43,4 +43,16 @@ npm install
 npm run dev
 ```
 
-For detailed explanation on how things work, checkout [ ExpressJS](https://expressjs.com/) and [NodeJS](https://nodejs.org/en/).
+For detailed explanation on how things work, checkout [ExpressJS](https://expressjs.com/) and [NodeJS](https://nodejs.org/en/).
+
+
+## Database
+Application uses MongoDB hosted at MongoLab using the Sandbox plan providing 24 hrs availability and 0.5GB space.
+
+```bash
+# To connect using the mongo shell:
+mongo ds111885.mlab.com:11885/jabber -u <dbuser> -p <dbpassword>
+
+# To connect using a driver via the standard MongoDB URI
+mongodb://<dbuser>:<dbpassword>@ds111885.mlab.com:11885/jabber
+```
