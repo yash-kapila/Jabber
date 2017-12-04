@@ -1,8 +1,8 @@
 import express from 'express';
 
 import config from '../../config/dev';
-import LoginModel from '../../models/login';
-import UserModel from '../../models/user';
+import LoginModel from '../../models/pre-login/login';
+import RegisterModel from '../../models/pre-login/register';
 import constants from '../../services/constants';
 import LoginService from '../../services/login';
 
@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
             // If username is new, save it in 'Credentials' collection
             login.createNewUser()
                 .then((login) => {
-                    const user = new UserModel({
+                    const user = new RegisterModel({
                         credentials: login._id,
                         email,
                     });

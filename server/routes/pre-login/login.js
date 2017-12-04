@@ -1,7 +1,7 @@
 import express from 'express';
 
 import config from '../../config/dev';
-import LoginModel from '../../models/login';
+import LoginModel from '../../models/pre-login/login';
 import constants from '../../services/constants';
 import LoginService from '../../services/login';
 
