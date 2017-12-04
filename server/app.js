@@ -22,12 +22,12 @@ mongoose.connect(config.dbURL, {
 /*
 ** If the Node process ends, close the Mongoose connection
 */
-process.on('SIGINT', () => {  
-    mongoose.connection.close(function () { 
-        console.log('Mongoose connection disconnected through app termination'); 
-        process.exit(0); 
-    }); 
-}); 
+process.on('SIGINT', () => {
+    mongoose.connection.close(function () {
+        console.log('Mongoose connection disconnected through app termination');
+        process.exit(0);
+    });
+});
 
 /*
 ** Set process.env.PORT through command line to override default 3000 port value

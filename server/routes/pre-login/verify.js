@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
         // If token valid, return status: true
         return res.status(200).json({
             status: true,
-            username: token.username,
+            username: status.username,
             code: constants.codes.session_valid
         });
     } catch(err) {
